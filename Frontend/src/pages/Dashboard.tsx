@@ -12,7 +12,7 @@ interface Content {
   type: ContentType;
   title: string;
   link: string;
-  id: string; // Add id for unique key prop
+  id: string; 
 }
 
 export function Dashboard() {
@@ -45,12 +45,10 @@ export function Dashboard() {
     }
   }
 
-  // Remove content dependency from useEffect to prevent infinite loop
   useEffect(() => {
     getContent();
   }, []);
 
-  // Function to handle content refresh after adding new content
   const handleContentAdded = () => {
     getContent();
     setModalOpen(false);
