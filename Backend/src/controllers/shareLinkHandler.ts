@@ -10,21 +10,18 @@ export const shareLinkHandler = async (req: Request, res: Response) => {
         return;
     }
 
-    // Find the link using the provided hash.
     const link = await Link.findOne({ hash: shareLink });
     if (!link) {
         res.status(404).json({ message: "Invalid share link" });
         return;
     }
 
-    // Fetch user first since we need to verify user exists
     const user = await User.findOne({ _id: link.userId });
     if (!user) {
         res.status(404).json({ message: "User not found" });
         return;
     }
 
-    // Add a limit to prevent excessive data fetching
     const content = await Content.find({ userId: link.userId }).limit(50);
     
     if (!content || content.length === 0) {
