@@ -18,7 +18,6 @@ const contentHandler = (req, res) => __awaiter(void 0, void 0, void 0, function*
             return;
         }
         const { link, type, title, tags = [] } = req.body;
-        // const tagIds = tags.map((tag: string) => new ObjectId(tag));
         yield db_1.Content.create({
             link,
             type,

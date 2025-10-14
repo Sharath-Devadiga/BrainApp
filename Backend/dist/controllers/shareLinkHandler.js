@@ -18,19 +18,16 @@ const shareLinkHandler = (req, res) => __awaiter(void 0, void 0, void 0, functio
             res.status(400).json({ message: "Share link is required" });
             return;
         }
-        // Find the link using the provided hash.
         const link = yield db_1.Link.findOne({ hash: shareLink });
         if (!link) {
             res.status(404).json({ message: "Invalid share link" });
             return;
         }
-        // Fetch user first since we need to verify user exists
         const user = yield db_1.User.findOne({ _id: link.userId });
         if (!user) {
             res.status(404).json({ message: "User not found" });
             return;
         }
-        // Add a limit to prevent excessive data fetching
         const content = yield db_1.Content.find({ userId: link.userId }).limit(50);
         if (!content || content.length === 0) {
             res.status(404).json({ message: "No content found" });
