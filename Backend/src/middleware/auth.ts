@@ -9,14 +9,20 @@ interface AuthRequest extends Request {
 
 export const auth = (req: AuthRequest, res: Response, next: NextFunction): void => {
   try {
-    const token = req.headers.token as string; 
+    const token = req.headers.token as string;
 
     if (!token) {
       res.status(401).json({ message: "No token provided" });
       return;
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
+    let decoded: jwt.JwtPayload | string | undefined;
+    try {
+      decoded = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
+    } catch (verifyErr) {
+      res.status(401).json({ message: 'Invalid token', error: verifyErr });
+      return;
+    }
 
     if (decoded && typeof decoded === "object" && "id" in decoded) {
       req.userId = decoded.id as string;

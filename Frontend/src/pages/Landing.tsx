@@ -11,7 +11,6 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navbar */}
       <nav className="fixed top-0 w-full bg-white shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -34,7 +33,6 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section className="pt-32 pb-20 px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen flex flex-col justify-center">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
@@ -61,7 +59,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Features Section */}
       <section id="features" className="py-24 px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
@@ -119,7 +116,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-24 px-6 lg:px-8 bg-gradient-to-br from-indigo-500 to-indigo-600 text-white text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6">Ready to Build Your Brain?</h2>
@@ -135,7 +131,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-8 px-6 bg-gray-900 text-white text-center">
         <p>&copy; 2025 Brain App. All rights reserved.</p>
       </footer>

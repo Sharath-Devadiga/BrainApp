@@ -1,6 +1,9 @@
 import { Request,Response } from "express";
 import {User} from '../db'
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET as string;
 
 
 
@@ -30,11 +33,13 @@ export const signupHandler = async (req: Request,res: Response) => {
       password: hashPassword
     })
 
+    const token = jwt.sign({ id: newUser._id }, JWT_SECRET);
+
     res.status(200).json({
       msg: "Signup successfully!",
-  })
+    })
   } catch(err){
-    console.error('Error during signup:', err);    res.status(500).json({
+    res.status(500).json({
       msg: "Internal server error"
   })
   }

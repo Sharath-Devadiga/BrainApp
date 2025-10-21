@@ -2,8 +2,7 @@ import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
-import { BACKEND_URL } from "../config";
-import axios from "axios";
+import api from "../api";
 
 export const Signup = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -13,7 +12,7 @@ export const Signup = () => {
   async function signUp() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
-    const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
+    const response = await api.post(`/user/signup`, {
       username,
       password,
     });
@@ -27,14 +26,12 @@ export const Signup = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center items-center px-4">
-      {/* Logo */}
       <div className="mb-8">
         <Link to="/" className="text-4xl font-bold text-indigo-500">
           🧠 Brain
         </Link>
       </div>
 
-      {/* Sign Up Card */}
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-200">
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
           Create Account
@@ -66,7 +63,6 @@ export const Signup = () => {
         </p>
       </div>
 
-      {/* Footer */}
       <p className="text-gray-500 text-sm mt-8">
         © 2025 Brain App. All rights reserved.
       </p>

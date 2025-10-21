@@ -14,26 +14,27 @@ export const contentHandler = async (req: AuthRequest, res: Response) => {
             return
         }
 
-        const {link,type,title,tags = []} = req.body
-
-
+        const {link, type, title, tags = [], content, fileUrl, fileName} = req.body
 
         await Content.create({
             link,
             type,
             title,
             userId: req.userId,
-            tags: []
+            tags: [],
+            content,
+            fileUrl,
+            fileName
         })
-        res.json({
+        res.status(201).json({
             message: 'Your content added!'
         })
 
         
     } catch(err){
-       res.json({
-        message: 'Error while adding content',
-        err
-       })
+        res.status(500).json({
+            message: 'Error while adding content',
+            error: err instanceof Error ? err.message : 'Unknown error'
+        })
     }
 }

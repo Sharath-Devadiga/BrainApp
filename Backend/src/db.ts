@@ -15,11 +15,15 @@ const tagsSchema = new Schema({
 })
 
 const contentSchema = new Schema({
-    link: {type: String, required:true},
+    link: {type: String},
     type: {type:String, required:true},
     title: {type:String, required:true},
     tags: [{type: ObjectId, ref: 'tags'}],
     userId: {type:ObjectId, ref: 'users', required: true},
+    content: {type: String},
+    fileUrl: {type: String},
+    fileName: {type: String},
+    createdAt: {type: Date, default: Date.now}
 })
 
 const linkSchema = new Schema({

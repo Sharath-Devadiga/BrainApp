@@ -1,20 +1,15 @@
-import axios  from "axios";
+import api from "../api";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "../config";
 
-export   function useContent() {
+export function useContent() {
     const [contents, setContents] = useState([])
 
     useEffect(() => {
-     axios.get(`${BACKEND_URL}/api/v1/user/content`,{
-            headers: { 
-                "token": localStorage.getItem('token')              }
-        })
+     api.get(`/user/content`)
         .then((response) => {
-            setContents(response.data.content)
+            setContents(response.data)
         })
-        .catch((error) => {
-            console.error("Error fetching content:", error);
+        .catch(() => {
         });
     }, [])
 

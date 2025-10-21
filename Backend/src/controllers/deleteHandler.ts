@@ -7,16 +7,30 @@ interface AuthRequest extends Request{
 
 export const deleteHandler = async (req: AuthRequest, res: Response) => {
     try{
-        const contentId = req.body.contentId
+        if (!req.userId) {
+            res.status(401).json({ message: "Unauthorized: No userId found" });
+            return;
+        }
 
-        await Content.deleteOne({_id: contentId, userId: req.userId});
-        res.json({
-            message: 'deleted'
-        })
+        const { contentId } = req.body;
+
+        if (!contentId) {
+            res.status(400).json({ message: "Content ID is required" });
+            return;
+        }
+
+        const result = await Content.deleteOne({ _id: contentId, userId: req.userId });
+
+        if (result.deletedCount === 0) {
+            res.status(404).json({ message: "Content not found or unauthorized" });
+            return;
+        }
+
+        res.status(200).json({ message: "Content deleted successfully" });
     } catch(err){
-        res.json({
+        res.status(500).json({
             message: 'Error while deleting',
-            err
-           })
+            error: err instanceof Error ? err.message : 'Unknown error'
+        });
     }
 }
