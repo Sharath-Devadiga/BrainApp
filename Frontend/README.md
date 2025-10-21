@@ -92,22 +92,7 @@ src/
 - Breakpoints: sm, md, lg, xl
 - Optimized for all screen sizes
 
-## Deployment
 
-### Build for Production
-
-```bash
-npm run build
-```
-
-The `dist` folder will contain the production build.
-
-### Recommended Platforms
-
-- **Vercel** (Recommended)
-- **Netlify**
-- **Railway**
-- **Cloudflare Pages**
 
 ### Environment Variables for Production
 
@@ -127,6 +112,3 @@ Set `VITE_API_URL` to your production backend URL.
 - Optimized bundle size
 - Fast page loads
 
-## License
-
-MIT
