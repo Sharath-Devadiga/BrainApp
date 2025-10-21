@@ -55,10 +55,8 @@ export function Dashboard() {
       }
     };
     
-    // Try immediately
     loadTwitterWidgets();
     
-    // Try again after a delay to ensure DOM is ready
     const timer = setTimeout(loadTwitterWidgets, 500);
     
     return () => clearTimeout(timer);
@@ -194,12 +192,14 @@ export function Dashboard() {
                   ? 'Start adding content to build your knowledge base' 
                   : `Try adding some ${selectedFilter} content or change filters`}
               </p>
-              <Button 
+              <div className='flex justify-center'>
+                 <Button 
                 onClick={() => setModalOpen(true)} 
                 variant='primary' 
                 text='Add Content' 
                 startIcon={<PlusIcon />} 
               />
+              </div>
             </div>
           </div>
         )}
