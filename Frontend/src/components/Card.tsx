@@ -70,18 +70,18 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
     return (
         <div className='bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col h-full'>
             {/* Header */}
-            <div className='p-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white'>
-                <div className='flex justify-between items-start gap-3'>
-                    <div className='flex items-center gap-3 flex-1 min-w-0'>
-                        <div className='text-indigo-600 flex-shrink-0 p-2 bg-indigo-50 rounded-lg'>
+            <div className='p-3 sm:p-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white'>
+                <div className='flex justify-between items-start gap-2 sm:gap-3'>
+                    <div className='flex items-center gap-2 sm:gap-3 flex-1 min-w-0'>
+                        <div className='text-indigo-600 flex-shrink-0 p-1.5 sm:p-2 bg-indigo-50 rounded-lg'>
                             {type=== "youtube" && <YoutubeIcon />}
                             {type=== "twitter"&& <TwitterIcon />}
-                            {type === "note" && <FileTextIcon size={20} />}
+                            {type === "note" && <FileTextIcon size={18} className="sm:w-5 sm:h-5" />}
                         </div>           
-                        <h3 className='font-semibold text-gray-900 text-sm line-clamp-2'>{title}</h3>
+                        <h3 className='font-semibold text-gray-900 text-xs sm:text-sm line-clamp-2'>{title}</h3>
                     </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                        <button className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors" title="Share">
+                    <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                        <button className="p-1.5 sm:p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors" title="Share">
                             <a href={link || "#"} target="_blank" rel="noopener noreferrer">
                                 <ShareIcon></ShareIcon>
                             </a>
@@ -89,7 +89,7 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
                         {showDelete && (
                             <button 
                                 onClick={() => setShowDeleteModal(true)}
-                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                                className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
                                 title="Delete content"
                             >
                                 <DeleteIcon></DeleteIcon>

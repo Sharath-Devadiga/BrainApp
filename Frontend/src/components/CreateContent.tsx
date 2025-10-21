@@ -108,17 +108,17 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
   return (
     <>
       {open && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl p-6 md:p-8 relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl w-full max-w-2xl mx-auto p-4 sm:p-6 md:p-8 relative max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 focus:outline-none p-1 rounded-lg hover:bg-gray-100 transition-colors"
               aria-label="Close modal"
             >
               <CrossIcon />
             </button>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6 text-center pr-8">
               Create Content
             </h2>
 
@@ -126,26 +126,26 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
               <Input placeholder="Title" ref={titleRef} />
             </div>
 
-            <div className="mt-6">
-              <h3 className="text-gray-700 mb-3 font-medium">Type</h3>
-              <div className="flex gap-3 flex-wrap">
+            <div className="mt-4 sm:mt-6">
+              <h3 className="text-gray-700 mb-2 sm:mb-3 font-medium text-sm sm:text-base">Type</h3>
+              <div className="flex gap-2 sm:gap-3 flex-wrap">
                 <Button
                   text="Youtube"
                   variant={type === ContentType.Youtube ? "primary" : "secondary"}
                   onClick={() => setType(ContentType.Youtube)}
-                  className="px-4 py-2 text-sm"
+                  className="px-3 sm:px-4 py-2 text-sm flex-1 sm:flex-none min-w-[90px]"
                 />
                 <Button
                   text="Twitter"
                   variant={type === ContentType.Twitter ? "primary" : "secondary"}
                   onClick={() => setType(ContentType.Twitter)}
-                  className="px-4 py-2 text-sm"
+                  className="px-3 sm:px-4 py-2 text-sm flex-1 sm:flex-none min-w-[90px]"
                 />
                 <Button
                   text="Note"
                   variant={type === ContentType.Note ? "primary" : "secondary"}
                   onClick={() => setType(ContentType.Note)}
-                  className="px-4 py-2 text-sm"
+                  className="px-3 sm:px-4 py-2 text-sm flex-1 sm:flex-none min-w-[90px]"
                 />
               </div>
             </div>
@@ -157,7 +157,7 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
             )}
 
             {type === ContentType.Note && (
-              <div className="mt-6 space-y-4">
+              <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
                 <div>
                   <label className="text-gray-700 font-medium text-sm mb-2 block">
                     Note Content
@@ -165,7 +165,7 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
                   <textarea
                     ref={contentRef}
                     placeholder="Write your note here..."
-                    className="w-full h-32 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full h-32 sm:h-40 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base"
                   />
                 </div>
 
@@ -173,7 +173,7 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
                   <label className="text-gray-700 font-medium text-sm mb-2 block">
                     Upload File (Optional - PDF, Image, Doc)
                   </label>
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -183,12 +183,12 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
                     />
                     <button
                       onClick={() => fileInputRef.current?.click()}
-                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg text-sm font-medium transition-colors"
+                      className="w-full sm:w-auto px-4 py-2.5 sm:py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg text-sm font-medium transition-colors"
                     >
                       Choose File
                     </button>
                     {fileName && (
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-gray-600 truncate max-w-full">
                         ✓ {fileName}
                       </span>
                     )}
@@ -204,8 +204,8 @@ export const CreateContent = ({ open, onClose }: CreateContentModalProps) => {
               </div>
             )}
 
-            <div className="mt-8 flex justify-center">
-              <Button onClick={content} variant="primary" text="Submit" className="px-6 py-2" />
+            <div className="mt-6 sm:mt-8 flex justify-center">
+              <Button onClick={content} variant="primary" text="Submit" className="w-full sm:w-auto px-8 py-2.5 sm:py-2" />
             </div>
           </div>
         </div>
