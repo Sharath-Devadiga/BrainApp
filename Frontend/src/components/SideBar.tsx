@@ -14,7 +14,7 @@ export const SideBar = ({ selectedFilter, onFilterChange }: SideBarProps) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const filterItems = [
-        { type: 'all' as const, label: 'All' },
+        { type: 'all' as const, label: 'All', icon: <img src="/brain.png" alt="All" className="w-5 h-5 rounded-full" /> },
         { type: ContentType.Youtube, label: 'Youtube', icon: <YoutubeIcon /> },
         { type: ContentType.Twitter, label: 'Twitter', icon: <TwitterIcon /> },
         { type: ContentType.Note, label: 'Notes', icon: <NotesIcon /> },
@@ -55,7 +55,7 @@ export const SideBar = ({ selectedFilter, onFilterChange }: SideBarProps) => {
                 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
                 <div className="flex items-center gap-3 px-4 sm:px-6 py-4 sm:py-6 border-b border-gray-200">
-                    <img src="/brain.png" alt="Brain Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <img src="/brain.png" alt="Brain Logo" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full" />
                     <span className="text-2xl sm:text-3xl font-bold text-indigo-500">Brain</span>
                 </div>
 

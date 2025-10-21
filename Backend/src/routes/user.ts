@@ -7,12 +7,14 @@ import { deleteHandler } from '../controllers/deleteHandler';
 import { shareHandler } from '../controllers/shareHandler';
 import { shareLinkHandler } from '../controllers/shareLinkHandler';
 import { upload, uploadHandler } from '../controllers/uploadHandler';
+import { forgotPasswordHandler } from '../controllers/forgotPasswordHandler';
 import {auth} from '../middleware/auth'
 export const userRouter = Router();
 
 
 userRouter.post('/signup', signupHandler);
 userRouter.post('/signin', signinHandler);
+userRouter.post('/forgot-password', forgotPasswordHandler);
 userRouter.post('/content', auth, contentHandler);
 userRouter.get('/content', auth, viewContentHandler);
 userRouter.delete('/content', auth, deleteHandler);

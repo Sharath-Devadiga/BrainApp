@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
+import { PasswordInput } from "../components/PasswordInput";
 
 export const Signup = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -53,7 +54,7 @@ export const Signup = () => {
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center items-center px-4">
       <div className="mb-8">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/brain.png" alt="Brain Logo" className="w-10 h-10 sm:w-12 sm:h-12" />
+          <img src="/brain.png" alt="Brain Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full" />
           <span className="text-4xl font-bold text-indigo-500">Brain</span>
         </Link>
       </div>
@@ -77,7 +78,7 @@ export const Signup = () => {
             <Input ref={usernameRef} placeholder="Username" />
           </div>
           <div className="w-full">
-            <Input ref={passwordRef} placeholder="Password (min 6 characters)" type="password" />
+            <PasswordInput ref={passwordRef} placeholder="Password (min 6 characters)" />
           </div>
           <div className="w-full pt-2">
             <Button 
