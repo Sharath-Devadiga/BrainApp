@@ -91,32 +91,6 @@ BrainApp/
 - Protected API routes
 - Secure file uploads
 
-## 📦 Deployment
-
-### Backend
-- **Recommended:** Railway, Render, Heroku
-- **Database:** MongoDB Atlas
-- **Storage:** Cloudinary (configured)
-
-### Frontend
-- **Recommended:** Vercel, Netlify
-- Configure `VITE_API_URL` to production backend
-
-## 🎯 API Endpoints
-
-### Authentication
-- `POST /api/v1/user/signup` - Register
-- `POST /api/v1/user/signin` - Login
-
-### Content
-- `GET /api/v1/user/content` - Get all content
-- `POST /api/v1/user/content` - Create content
-- `DELETE /api/v1/user/content` - Delete content
-- `POST /api/v1/user/upload` - Upload files
-
-### Sharing
-- `POST /api/v1/user/brain/share` - Manage share link
-- `GET /api/v1/user/brain/:shareLink` - View shared content
 
 ## 🎨 UI Features
 
@@ -153,14 +127,6 @@ VITE_API_URL=http://localhost:3000/api/v1
 4. Push to the branch
 5. Open a Pull Request
 
-## 📄 License
-
-MIT License - feel free to use this project for personal or commercial purposes.
-
-## 👨‍💻 Author
-
-Built with ❤️ by the Brain App team
 
 ---
 
-**Ready for production deployment! 🚀**
