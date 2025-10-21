@@ -1,54 +1,75 @@
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { BACKEND_URL } from "../config";
-import  axios  from "axios";
+import axios from "axios";
 
 export const Signup = () => {
-  const usernameRef = useRef<HTMLInputElement>(null)
-  const passwordRef = useRef<HTMLInputElement>(null)
-  const navigate  = useNavigate();
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   async function signUp() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
       username,
-      password
+      password,
     });
-    
+
     const jwt = response.data.token;
-    localStorage.setItem('token', jwt);
-    
-    navigate('/dashboard');
+    localStorage.setItem("token", jwt);
+
+    navigate("/dashboard");
     alert("You have signed up!");
   }
+
   return (
-    <div className="h-screen w-screen bg-gray-100 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
-        <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">Sign Up</h2>
-        <div className="space-y-4">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center items-center px-4">
+      {/* Logo */}
+      <div className="mb-8">
+        <Link to="/" className="text-4xl font-bold text-indigo-500">
+          🧠 Brain
+        </Link>
+      </div>
+
+      {/* Sign Up Card */}
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-200">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
+          Create Account
+        </h2>
+        <p className="text-gray-600 text-center mb-8">
+          Start building your second brain today
+        </p>
+
+        <div className="space-y-5">
           <div className="w-full">
             <Input ref={usernameRef} placeholder="Username" />
           </div>
           <div className="w-full">
             <Input ref={passwordRef} placeholder="Password"  />
           </div>
-          <div className="w-full flex justify-center">
-            <Button onClick={signUp} variant="primary" text="Sign Up" />
+          <div className="w-full pt-2">
+            <Button onClick={signUp} variant="primary" text="Sign Up" fullWidth={true} />
           </div>
         </div>
-        <p className="text-sm text-gray-600 text-center mt-4">
+
+        <p className="text-sm text-gray-600 text-center mt-6">
           Already have an account?{" "}
           <Link
             to="/signin"
-            className="text-blue-500 font-medium hover:underline"
+            className="text-indigo-500 font-semibold hover:text-indigo-600 transition-colors"
           >
             Sign In
           </Link>
         </p>
       </div>
+
+      {/* Footer */}
+      <p className="text-gray-500 text-sm mt-8">
+        © 2025 Brain App. All rights reserved.
+      </p>
     </div>
   );
 };
