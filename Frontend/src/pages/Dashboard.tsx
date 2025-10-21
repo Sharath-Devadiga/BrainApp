@@ -27,17 +27,19 @@ export function Dashboard() {
 
   async function getContent() {
     try {
-      const response = await api.get(`/user/content`);
+      setLoading(true);
+      const response = await api.get("/user/content");
       
-      const transformedContent = response.data.map((item: any) => ({
+      const data = response.data.success ? response.data.data : response.data;
+      const transformedContent = data.map((item: any) => ({
         ...item,
         id: item._id || item.id
       }));
       
       setContents(transformedContent);
       setError(null);
-    } catch (err) {
-      setError('Failed to fetch content');
+    } catch (err: any) {
+      setError(err.response?.data?.message || "Failed to fetch content");
     } finally {
       setLoading(false);
     }

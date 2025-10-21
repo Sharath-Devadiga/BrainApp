@@ -1,50 +1,132 @@
-# React + TypeScript + Vite
+# Brain App - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive React application for managing your second brain - save, organize, and share YouTube videos, tweets, and notes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎨 Modern, clean UI with Tailwind CSS
+- 📱 Fully responsive design
+- 🔐 Secure authentication
+- 📝 Content management (YouTube, Twitter, Notes)
+- 📁 File upload with cloud storage
+- 🔍 Content filtering by type
+- 🔗 Share collections with unique links
+- ⚡ Fast and optimized performance
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Framework:** React 18 with TypeScript
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **HTTP Client:** Axios
+- **Routing:** React Router v6
+- **Icons:** Lucide React
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- Node.js (v18 or higher)
+- Backend API running
+
+### Installation
+
+1. Install dependencies:
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Create `.env` file:
+```bash
+cp .env.example .env
 ```
+
+3. Configure environment variables:
+```env
+VITE_API_URL='http://localhost:3000/api/v1'
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+App will be available at `http://localhost:5173`
+
+### Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/      # Reusable UI components
+├── pages/          # Page components
+├── hooks/          # Custom React hooks
+├── Icons/          # Icon components
+├── api.ts          # API client configuration
+├── config.ts       # App configuration
+└── App.tsx         # Main app component
+```
+
+## Key Features
+
+### Content Types
+- **YouTube:** Embedded video players
+- **Twitter:** Native tweet embeds
+- **Notes:** Text content with file attachments
+
+### File Upload
+- Images (JPG, PNG, GIF)
+- Documents (PDF, DOC, DOCX)
+- Text files (TXT)
+- Max file size: 10MB
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints: sm, md, lg, xl
+- Optimized for all screen sizes
+
+## Deployment
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The `dist` folder will contain the production build.
+
+### Recommended Platforms
+
+- **Vercel** (Recommended)
+- **Netlify**
+- **Railway**
+- **Cloudflare Pages**
+
+### Environment Variables for Production
+
+Set `VITE_API_URL` to your production backend URL.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Performance
+
+- Code splitting
+- Lazy loading
+- Optimized bundle size
+- Fast page loads
+
+## License
+
+MIT

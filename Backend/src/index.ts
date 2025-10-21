@@ -1,25 +1,44 @@
-import dotenv from 'dotenv'
-dotenv.config()
-import express from 'express' 
-import mongoose from 'mongoose'
-import jwt from 'jsonwebtoken'
-import { userRouter } from './routes/user'
-import cors from 'cors'
+import dotenv from "dotenv";
+dotenv.config();
 
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import { userRouter } from "./routes/user";
 
-app.use('/api/v1/user', userRouter)
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const main = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URL!)
-        app.listen(3000, () => {
-        })
-    } catch (err) {
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "*",
+  credentials: true
+}));
+
+app.use("/api/v1/user", userRouter);
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+const connectDB = async () => {
+  try {
+    if (!process.env.MONGO_URL) {
+      throw new Error("MONGO_URL environment variable is required");
     }
-}
 
-main()
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("✓ Database connected successfully");
+
+    app.listen(PORT, () => {
+      console.log(`✓ Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("✗ Database connection failed:", err);
+    process.exit(1);
+  }
+};
+
+connectDB();

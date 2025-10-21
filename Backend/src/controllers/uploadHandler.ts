@@ -2,17 +2,14 @@ import { Request, Response } from "express";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 
-// Configure Cloudinary
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Import CloudinaryStorage correctly
 const CloudinaryStorage = require('multer-storage-cloudinary').CloudinaryStorage;
 
-// Configure multer with Cloudinary storage
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req: any, file: any) => {
@@ -48,39 +45,36 @@ export const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 },
 });
 
-export const uploadHandler = (req: Request, res: Response) => {
+export const uploadHandler = (req: Request, res: Response): void => {
   try {
     if (!req.file) {
-      res.status(400).json({ message: "No file uploaded" });
+      res.status(400).json({ 
+        success: false,
+        message: "No file uploaded" 
+      });
       return;
     }
 
-    console.log('File upload received:', req.file);
-
-    // Cloudinary provides secure_url and public_id
     const fileUrl = (req.file as any).secure_url || (req.file as any).path;
     const fileName = (req.file as any).original_filename || (req.file as any).originalname;
 
-    console.log('File URL:', fileUrl);
-    console.log('File Name:', fileName);
-
     if (!fileUrl) {
-      console.error('No fileUrl in upload response. Full file object:', req.file);
       res.status(500).json({
-        message: "Failed to get Cloudinary URL",
-        file: req.file,
+        success: false,
+        message: "Failed to upload file to cloud storage",
       });
       return;
     }
 
     res.status(200).json({
+      success: true,
       message: "File uploaded successfully",
       fileUrl,
       fileName,
     });
   } catch (error) {
-    console.error('Upload error:', error);
     res.status(500).json({
+      success: false,
       message: "Error uploading file",
       error: error instanceof Error ? error.message : "Unknown error",
     });

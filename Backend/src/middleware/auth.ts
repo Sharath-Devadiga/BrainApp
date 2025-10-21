@@ -9,28 +9,43 @@ interface AuthRequest extends Request {
 
 export const auth = (req: AuthRequest, res: Response, next: NextFunction): void => {
   try {
-    const token = req.headers.token as string;
+    const token = req.headers.token as string || req.headers.authorization?.replace('Bearer ', '');
 
     if (!token) {
-      res.status(401).json({ message: "No token provided" });
+      res.status(401).json({
+        success: false,
+        message: "Authentication token required"
+      });
       return;
     }
 
-    let decoded: jwt.JwtPayload | string | undefined;
-    try {
-      decoded = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
-    } catch (verifyErr) {
-      res.status(401).json({ message: 'Invalid token', error: verifyErr });
-      return;
-    }
+    const decoded = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload;
 
     if (decoded && typeof decoded === "object" && "id" in decoded) {
       req.userId = decoded.id as string;
       next();
     } else {
-      res.status(401).json({ message: "Invalid token" });
+      res.status(401).json({
+        success: false,
+        message: "Invalid token format"
+      });
     }
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized User", error: error });
+    if (error instanceof jwt.TokenExpiredError) {
+      res.status(401).json({
+        success: false,
+        message: "Token expired"
+      });
+    } else if (error instanceof jwt.JsonWebTokenError) {
+      res.status(401).json({
+        success: false,
+        message: "Invalid token"
+      });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Authentication failed"
+      });
+    }
   }
 };

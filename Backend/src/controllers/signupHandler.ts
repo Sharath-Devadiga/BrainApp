@@ -1,46 +1,58 @@
-import { Request,Response } from "express";
-import {User} from '../db'
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import { User } from "../db";
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
+export const signupHandler = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { username, password } = req.body;
 
+    if (!username || !password) {
+      res.status(400).json({
+        success: false,
+        message: "Username and password are required"
+      });
+      return;
+    }
 
-export const signupHandler = async (req: Request,res: Response) => {
-  try{
-    const {username,password} = req.body
+    if (password.length < 6) {
+      res.status(400).json({
+        success: false,
+        message: "Password must be at least 6 characters long"
+      });
+      return;
+    }
+
+    const existingUser = await User.findOne({ username });
     
-    if(!username || !password){
-      res.json({
-        message: 'Username and Password are required'
-      })
+    if (existingUser) {
+      res.status(409).json({
+        success: false,
+        message: "Username already exists"
+      });
       return;
     }
 
-    const existingUser = await User.findOne({username})
-    if(existingUser){
-      res.json({
-        message: 'Username already exits'
-      })
-      return;
-    }
-
-    const hashPassword = await bcrypt.hash(password,5)
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
       username,
-      password: hashPassword
-    })
+      password: hashedPassword
+    });
 
-    const token = jwt.sign({ id: newUser._id }, JWT_SECRET);
+    const token = jwt.sign({ id: newUser._id }, JWT_SECRET, { expiresIn: "7d" });
 
-    res.status(200).json({
-      msg: "Signup successfully!",
-    })
-  } catch(err){
+    res.status(201).json({
+      success: true,
+      message: "Account created successfully",
+      token
+    });
+  } catch (err) {
     res.status(500).json({
-      msg: "Internal server error"
-  })
+      success: false,
+      message: "Internal server error"
+    });
   }
-}
+};

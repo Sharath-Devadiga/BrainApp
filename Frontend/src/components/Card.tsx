@@ -24,7 +24,6 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
-        console.log('Card rendered with fileUrl:', fileUrl, 'fileName:', fileName);
         if (type === "twitter") {
             const timer = setTimeout(() => {
                 if ((window as any).twttr && (window as any).twttr.widgets) {
@@ -33,7 +32,7 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
             }, 100);
             return () => clearTimeout(timer);
         }
-    }, [type, link, fileUrl, fileName]);
+    }, [type, link]);
 
     const getFileIcon = (url: string) => {
         if (url.endsWith('.pdf')) return '📄';
@@ -158,7 +157,6 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
                                             alt={fileName || 'Uploaded image'}
                                             className="w-full h-full object-cover hover:scale-105 transition-transform cursor-pointer"
                                             onError={(e) => {
-                                                console.error('Image failed to load:', fileUrl);
                                                 (e.target as HTMLImageElement).style.display = 'none';
                                             }}
                                         />
