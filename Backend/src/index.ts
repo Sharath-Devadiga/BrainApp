@@ -16,15 +16,24 @@ const allowedOrigins = [
   process.env.PRODUCTION_URL
 ].filter(Boolean);
 
+console.log('🔧 Environment variables loaded:');
+console.log('  FRONTEND_URL:', process.env.FRONTEND_URL);
+console.log('  PRODUCTION_URL:', process.env.PRODUCTION_URL);
+console.log('  NODE_ENV:', process.env.NODE_ENV);
+console.log('🌐 Allowed CORS origins:', allowedOrigins);
+
 const corsOptions = {
   origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    console.log('📨 Incoming request from origin:', origin);
+    
     if (!origin) return callback(null, true);
     
     if (allowedOrigins.indexOf(origin) !== -1) {
+      console.log('✅ Origin allowed:', origin);
       callback(null, true);
     } else {
-      console.log('CORS blocked origin:', origin);
-      console.log('Allowed origins:', allowedOrigins);
+      console.log('❌ CORS blocked origin:', origin);
+      console.log('   Allowed origins:', allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
   },
