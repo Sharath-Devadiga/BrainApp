@@ -14,7 +14,10 @@ export default function Landing() {
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
-            <div className="text-2xl sm:text-3xl font-bold text-indigo-500">🧠 Brain</div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <img src="/brain.png" alt="Brain Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+              <span className="text-2xl sm:text-3xl font-bold text-indigo-500">Brain</span>
+            </div>
             <div className="flex gap-2 sm:gap-4">
               <a
                 href="/signin"
@@ -136,7 +139,10 @@ export default function Landing() {
 
       <footer className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">🧠 Brain</div>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <img src="/brain.png" alt="Brain Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+            <span className="text-2xl sm:text-3xl font-bold text-white">Brain</span>
+          </div>
           <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">
             Your second brain for everything that matters
           </p>

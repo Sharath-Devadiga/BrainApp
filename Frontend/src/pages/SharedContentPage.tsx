@@ -95,10 +95,13 @@ export function SharedContentPage() {
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-4 sm:mb-6">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-                    🧠 {sharedData.username}'s Brain
-                  </h1>
-                  <p className="text-gray-600 mt-1 text-sm sm:text-base">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <img src="/brain.png" alt="Brain Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                      {sharedData.username}'s Brain
+                    </h1>
+                  </div>
+                  <p className="text-gray-600 mt-1 text-sm sm:text-base ml-10 sm:ml-13">
                     Exploring shared knowledge and insights
                   </p>
                 </div>

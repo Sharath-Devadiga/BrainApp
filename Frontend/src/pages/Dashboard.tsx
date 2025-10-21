@@ -183,7 +183,9 @@ export function Dashboard() {
         {!loading && !error && filteredContents.length === 0 && (
           <div className="flex justify-center items-center mt-16">
             <div className="text-center">
-              <div className="text-6xl mb-4">🧠</div>
+              <div className="flex justify-center mb-4">
+                <img src="/brain.png" alt="Brain" className="w-16 h-16 rounded-full" />
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {contents.length === 0 ? 'Your brain is empty' : `No ${selectedFilter} content found`}
               </h3>

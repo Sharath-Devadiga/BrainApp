@@ -4,6 +4,7 @@ import { YoutubeIcon } from "../Icons/YoutubeIcon";
 import { NotesIcon } from "../Icons/NotesIcon";
 import { ContentType } from "./CreateContent";
 
+
 interface SideBarProps {
   selectedFilter: ContentType | 'all';
   onFilterChange: (filter: ContentType | 'all') => void;
@@ -13,7 +14,7 @@ export const SideBar = ({ selectedFilter, onFilterChange }: SideBarProps) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const filterItems = [
-        { type: 'all' as const, label: 'All', icon: <span className="text-2xl">🧠</span> },
+        { type: 'all' as const, label: 'All' },
         { type: ContentType.Youtube, label: 'Youtube', icon: <YoutubeIcon /> },
         { type: ContentType.Twitter, label: 'Twitter', icon: <TwitterIcon /> },
         { type: ContentType.Note, label: 'Notes', icon: <NotesIcon /> },
@@ -53,8 +54,9 @@ export const SideBar = ({ selectedFilter, onFilterChange }: SideBarProps) => {
                 h-screen bg-white w-72 fixed left-0 top-0 shadow-lg border-r border-gray-200 z-40 transition-transform duration-300
                 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
-                <div className="flex items-center px-4 sm:px-6 py-4 sm:py-6 border-b border-gray-200">
-                    <span className="text-2xl sm:text-3xl font-bold text-indigo-500">🧠 Brain</span>
+                <div className="flex items-center gap-3 px-4 sm:px-6 py-4 sm:py-6 border-b border-gray-200">
+                    <img src="/brain.png" alt="Brain Logo" className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <span className="text-2xl sm:text-3xl font-bold text-indigo-500">Brain</span>
                 </div>
 
                 <div className="pt-6 px-4 space-y-2">

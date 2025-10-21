@@ -52,8 +52,9 @@ export const Signup = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center items-center px-4">
       <div className="mb-8">
-        <Link to="/" className="text-4xl font-bold text-indigo-500">
-          🧠 Brain
+        <Link to="/" className="flex items-center gap-3">
+          <img src="/brain.png" alt="Brain Logo" className="w-10 h-10 sm:w-12 sm:h-12" />
+          <span className="text-4xl font-bold text-indigo-500">Brain</span>
         </Link>
       </div>
 
