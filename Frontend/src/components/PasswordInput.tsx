@@ -13,13 +13,13 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         <input
           type={showPassword ? "text" : "password"}
           placeholder={placeholder}
-          className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+          className="w-full px-4 py-3.5 sm:py-3 pr-12 text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all shadow-sm hover:border-gray-300"
           ref={ref}
         />
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-indigo-600 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-all active:scale-95"
           tabIndex={-1}
         >
           {showPassword ? (
@@ -27,7 +27,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={2}
               stroke="currentColor"
               className="w-5 h-5"
             >
@@ -42,7 +42,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={2}
               stroke="currentColor"
               className="w-5 h-5"
             >

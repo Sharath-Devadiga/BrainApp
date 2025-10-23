@@ -107,35 +107,35 @@ export const Signin = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center items-center px-4">
-      <div className="mb-8">
-        <Link to="/" className="flex items-center gap-3">
-          <img src="/brain.png" alt="Brain Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full" />
-          <span className="text-4xl font-bold text-indigo-500">Brain</span>
+    <div className="min-h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex flex-col justify-center items-center px-4 py-8 sm:px-6">
+      <div className="mb-6 sm:mb-8">
+        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 hover:scale-105 transition-transform active:scale-95">
+          <img src="/brain.png" alt="Brain Logo" className="w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg" />
+          <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-indigo-400 bg-clip-text text-transparent">Brain</span>
         </Link>
       </div>
 
-      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-200">
-        <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
+      <div className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-md border-2 border-gray-100">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-2">
           {showForgotPassword ? "Reset Password" : "Welcome Back"}
         </h2>
-        <p className="text-gray-600 text-center mb-8">
+        <p className="text-sm sm:text-base text-gray-600 text-center mb-6 sm:mb-8">
           {showForgotPassword ? "Enter your username and new password" : "Sign in to access your brain"}
         </p>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
+          <div className="bg-red-50 border-2 border-red-200 text-red-700 px-4 py-3.5 rounded-xl mb-5 text-sm sm:text-base font-medium">
             {error}
           </div>
         )}
 
         {resetMessage && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-4">
+          <div className="bg-green-50 border-2 border-green-200 text-green-700 px-4 py-3.5 rounded-xl mb-5 text-sm sm:text-base font-medium">
             {resetMessage}
           </div>
         )}
 
-        <div className="space-y-5" onKeyPress={handleKeyPress}>
+        <div className="space-y-4 sm:space-y-5" onKeyPress={handleKeyPress}>
           <div className="w-full">
             <Input ref={usernameRef} placeholder="Username" />
           </div>
@@ -162,13 +162,13 @@ export const Signin = () => {
                   text={loading ? "Sending..." : "Reset Password"} 
                   fullWidth={true}
                   disabled={loading}
+                  className="py-3.5 text-base sm:text-lg font-bold shadow-lg hover:shadow-xl"
                 />
                 <Button 
                   onClick={() => {
                     setShowForgotPassword(false);
                     setError("");
                     setResetMessage("");
-                    // Clear password fields when switching back
                     if (passwordRef.current) passwordRef.current.value = "";
                     if (newPasswordRef.current) newPasswordRef.current.value = "";
                     if (confirmPasswordRef.current) confirmPasswordRef.current.value = "";
@@ -177,6 +177,7 @@ export const Signin = () => {
                   text="Back to Sign In" 
                   fullWidth={true}
                   disabled={loading}
+                  className="py-3.5 text-base sm:text-lg font-bold"
                 />
               </div>
             ) : (
@@ -186,40 +187,40 @@ export const Signin = () => {
                 text={loading ? "Signing in..." : "Sign In"} 
                 fullWidth={true}
                 disabled={loading}
+                className="py-3.5 text-base sm:text-lg font-bold shadow-lg hover:shadow-xl"
               />
             )}
           </div>
         </div>
 
         {!showForgotPassword && (
-          <div className="text-center mt-4">
+          <div className="text-center mt-5">
             <button
               onClick={() => {
                 setShowForgotPassword(true);
                 setError("");
                 setResetMessage("");
-                // Clear password field when switching to forgot password
                 if (passwordRef.current) passwordRef.current.value = "";
               }}
-              className="text-sm text-indigo-500 hover:text-indigo-600 font-medium transition-colors"
+              className="text-sm sm:text-base text-indigo-600 hover:text-indigo-700 font-semibold transition-colors active:scale-95"
             >
               Forgot Password?
             </button>
           </div>
         )}
 
-        <p className="text-sm text-gray-600 text-center mt-6">
+        <p className="text-sm sm:text-base text-gray-600 text-center mt-6 sm:mt-8">
           Don't have an account?{" "}
           <Link
             to="/signup"
-            className="text-indigo-500 font-semibold hover:text-indigo-600 transition-colors"
+            className="text-indigo-600 font-bold hover:text-indigo-700 transition-colors active:scale-95 inline-block"
           >
             Sign Up
           </Link>
         </p>
       </div>
 
-      <p className="text-gray-500 text-sm mt-8">
+      <p className="text-gray-500 text-xs sm:text-sm mt-6 sm:mt-8 text-center">
         © 2025 Brain App. All rights reserved.
       </p>
     </div>

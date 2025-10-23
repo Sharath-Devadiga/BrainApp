@@ -13,12 +13,12 @@ interface ButtonProps {
 }
 
 const variantClasses = {
-  primary: "bg-purple-600 text-white hover:bg-purple-700 transition-colors",
-  secondary: "bg-purple-200 text-purple-600 hover:bg-purple-300 transition-colors",
+  primary: "bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-700 hover:to-indigo-600 active:scale-95 transition-all",
+  secondary: "bg-white border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95 transition-all",
 };
 
 const defaultStyles =
-  "px-4 py-2 rounded-lg font-medium flex items-center justify-center shadow-md cursor-pointer";
+  "px-4 py-2.5 rounded-xl font-semibold flex items-center justify-center shadow-md hover:shadow-lg cursor-pointer";
 
 export const Button = ({
   variant,
