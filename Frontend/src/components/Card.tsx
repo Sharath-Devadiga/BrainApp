@@ -68,20 +68,20 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
     };
 
     return (
-        <div className='bg-white rounded-xl sm:rounded-2xl border-2 border-gray-200 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full hover:scale-[1.02] active:scale-100'>
+        <div className='bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col h-full'>
             {/* Header */}
-            <div className='p-4 sm:p-5 border-b-2 border-gray-100 bg-gradient-to-r from-gray-50 via-white to-indigo-50/30'>
-                <div className='flex justify-between items-start gap-3'>
-                    <div className='flex items-center gap-3 flex-1 min-w-0'>
-                        <div className='text-white flex-shrink-0 p-2.5 sm:p-3 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-md'>
+            <div className='p-3 sm:p-4 border-b border-gray-100'>
+                <div className='flex justify-between items-start gap-2 sm:gap-3'>
+                    <div className='flex items-center gap-2 sm:gap-2.5 flex-1 min-w-0'>
+                        <div className='flex-shrink-0 text-gray-600'>
                             {type=== "youtube" && <YoutubeIcon />}
                             {type=== "twitter"&& <TwitterIcon />}
-                            {type === "note" && <FileTextIcon size={20} className="sm:w-6 sm:h-6" />}
+                            {type === "note" && <FileTextIcon size={18} className="sm:w-5 sm:h-5" />}
                         </div>           
-                        <h3 className='font-bold text-gray-900 text-sm sm:text-base line-clamp-2 leading-snug'>{title}</h3>
+                        <h3 className='font-semibold text-gray-900 text-sm sm:text-base line-clamp-2 leading-tight'>{title}</h3>
                     </div>
-                    <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-                        <button className="p-2 sm:p-2.5 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all active:scale-95 shadow-sm" title="Share">
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                        <button className="p-1.5 sm:p-2 text-gray-400 hover:text-indigo-600 hover:bg-gray-50 rounded-lg transition-all" title="Share">
                             <a href={link || "#"} target="_blank" rel="noopener noreferrer">
                                 <ShareIcon></ShareIcon>
                             </a>
@@ -89,7 +89,7 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
                         {showDelete && (
                             <button 
                                 onClick={() => setShowDeleteModal(true)}
-                                className="p-2 sm:p-2.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all active:scale-95 shadow-sm"
+                                className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
                                 title="Delete content"
                             >
                                 <DeleteIcon></DeleteIcon>
@@ -142,20 +142,20 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
                     </div>
                 )}
                 {type === "note" && (
-                    <div className="p-4 sm:p-5 space-y-3 sm:space-y-4 overflow-y-auto flex-1">
+                    <div className={`p-3 sm:p-4 space-y-2.5 sm:space-y-3 flex-1 ${fileUrl ? 'overflow-y-auto' : 'overflow-hidden'}`}>
                         {content && (
-                            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-gray-800 text-sm sm:text-base max-h-32 overflow-y-auto border-2 border-blue-100 shadow-sm">
-                                <div className="text-gray-700 leading-relaxed font-medium">{content}</div>
+                            <div className={`bg-gray-50 rounded-lg p-3 text-gray-700 text-sm leading-relaxed border border-gray-200 ${fileUrl ? 'max-h-24 overflow-y-auto' : ''}`}>
+                                {content}
                             </div>
                         )}
                         {fileUrl && (
-                            <div className="space-y-2.5">
+                            <div className="space-y-2">
                                 {isImageFile(fileUrl) && (
-                                    <div className="rounded-xl overflow-hidden bg-gray-100 border-2 border-gray-200 h-44 shadow-md">
+                                    <div className="rounded-lg overflow-hidden bg-gray-50 border border-gray-200 h-40 sm:h-48">
                                         <img 
                                             src={fileUrl}
                                             alt={fileName || 'Uploaded image'}
-                                            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300 cursor-pointer"
+                                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-200 cursor-pointer"
                                             onError={(e) => {
                                                 (e.target as HTMLImageElement).style.display = 'none';
                                             }}
@@ -163,22 +163,22 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
                                     </div>
                                 )}
                                 {isPdfFile(fileUrl) && (
-                                    <div className="rounded-xl overflow-hidden bg-gray-100 border-2 border-gray-200 shadow-md">
+                                    <div className="rounded-lg overflow-hidden bg-gray-50 border border-gray-200">
                                         <embed 
                                             src={fileUrl}
                                             type="application/pdf"
-                                            className="w-full h-44"
+                                            className="w-full h-40 sm:h-48"
                                         />
                                     </div>
                                 )}
-                                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4 border-2 border-indigo-200 hover:border-indigo-300 transition-all shadow-sm hover:shadow-md">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-2xl flex-shrink-0">{getFileIcon(fileUrl)}</span>
+                                <div className="bg-gray-50 rounded-lg p-2.5 border border-gray-200 hover:border-gray-300 transition-colors">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-lg flex-shrink-0">{getFileIcon(fileUrl)}</span>
                                         <a 
                                             href={fileUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-indigo-700 hover:text-indigo-900 truncate text-sm sm:text-base font-bold flex-1"
+                                            className="text-indigo-600 hover:text-indigo-700 truncate text-xs sm:text-sm font-semibold flex-1"
                                             title={fileName}
                                         >
                                             {fileName || 'Download File'}
@@ -188,12 +188,12 @@ export const Card = ({title, link, type, content, fileUrl, fileName, id, onDelet
                             </div>
                         )}
                         {link && (
-                            <div className="text-xs sm:text-sm border-t-2 border-gray-200 pt-3">
+                            <div className="text-xs border-t border-gray-200 pt-2 mt-auto">
                                 <a 
                                     href={link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-indigo-600 hover:text-indigo-800 truncate block break-all font-semibold"
+                                    className="text-indigo-600 hover:text-indigo-700 truncate block break-all font-medium"
                                 >
                                     🔗 Reference
                                 </a>

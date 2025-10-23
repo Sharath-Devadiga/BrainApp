@@ -164,9 +164,9 @@ export function Dashboard() {
         )}
 
         {!loading && !error && (
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6'>
             {filteredContents?.map((content) => (
-              <div key={content.id} className='h-80 sm:h-[360px]'>
+              <div key={content.id} className='aspect-square'>
                 <Card
                   id={content.id}
                   type={content.type} 
